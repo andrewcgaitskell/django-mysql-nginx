@@ -4,3 +4,6 @@ Plotly
 django_plotly_dash
 channels
 channels-redis
+daphne
+redis
+django-redis
