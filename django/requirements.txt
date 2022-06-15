@@ -1,7 +1,8 @@
 gunicorn
 environs
+pandas
 Django
-Plotly
+plotly
 django_plotly_dash
 dash_renderer
 channels
