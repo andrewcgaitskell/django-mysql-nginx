@@ -15,6 +15,8 @@ from .plotly_plot import *
 
 #######
 
+#from .dash_plot import *
+
 
 #def index(request):
 #    return HttpResponse("Hello, world. You're at the polls index.")

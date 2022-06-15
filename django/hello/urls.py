@@ -1,5 +1,7 @@
 from django.urls import include, path,  re_path
 
+from . import plotly_dash
+
 from . import views
 
 urlpatterns = [
