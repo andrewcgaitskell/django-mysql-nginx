@@ -3,6 +3,7 @@ environs
 Django
 Plotly
 django_plotly_dash
+dash_renderer
 channels
 channels-redis
 daphne
