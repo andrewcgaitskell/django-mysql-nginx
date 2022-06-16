@@ -98,10 +98,31 @@ ASGI_APPLICATION = 'example.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'OPTIONS': {
+#            'read_default_file': os.path.join(BASE_DIR, 'secrets/my.cnf'),
+#        },
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
+        'NAME'    : 'RubyDB',                 # <-- UPDATED line 
+        'USER'    : 'pythonuser',                     # <-- UPDATED line
+        'PASSWORD': 'pythonuser',              # <-- UPDATED line
+        'HOST'    : 'localhost',                # <-- UPDATED line
+        'PORT'    : '3306',
     }
 }
 
