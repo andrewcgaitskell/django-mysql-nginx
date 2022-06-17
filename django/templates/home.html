@@ -1,21 +1,14 @@
-<!-- djangotemplates/example/templates/index.html-->
+<!-- templates/home.html -->
+{% extends 'base_generic.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Welcome Home</title>
-</head>
-<body>
- 
-  <div id='viz'>
-    {{ target_plot|safe }}
-</div>
+{% block title %}Home{% endblock %}
 
-
-
-  <a href="{% url 'home' %}">Go Home</a>
-  <a href="{% url 'about' %}">About This Site</a>
-</body>
-</html>
-
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

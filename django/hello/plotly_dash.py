@@ -3,7 +3,11 @@ from dash import dcc, html
 
 from django_plotly_dash import DjangoDash
 
-app = DjangoDash('SimpleExample')   # replaces dash.Dash
+import dash_bootstrap_components as dbc
+
+
+app = DjangoDash('SimpleExample', add_bootstrap_links=True, external_stylesheets = [dbc.themes.DARKLY])   # replaces dash.Dash
+
 
 app.layout = html.Div([
     dcc.RadioItems(

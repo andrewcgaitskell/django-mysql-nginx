@@ -2,7 +2,10 @@ gunicorn
 environs
 pandas
 Django
+whitenoise
+django-bootstrap4
 plotly
+dpd-static-support
 django_plotly_dash
 dash_renderer
 channels
@@ -11,3 +14,5 @@ daphne
 redis
 django-redis
 mysqlclient
+social-auth-app-django
+python-dotenv
