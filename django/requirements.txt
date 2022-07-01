@@ -3,6 +3,7 @@ environs
 pandas
 Django
 whitenoise
+dash_bootstrap_components
 django-bootstrap4
 plotly
 dpd-static-support

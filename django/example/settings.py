@@ -20,6 +20,9 @@ from dotenv import find_dotenv
 env = Env()
 load_dotenv(find_dotenv())
 
+import json
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,8 +31,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY',
-                'h8+mu_iy6%5j%7+hp**+gsq$nmy!!mjd8z_qkd94@z!%9%!+qn')
+#SECRET_KEY = env('SECRET_KEY',
+#                'h8+mu_iy6%5j%7+hp**+gsq$nmy!!mjd8z_qkd94@z!%9%!+qn')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', True)
@@ -61,6 +64,7 @@ INSTALLED_APPS = [
     'channels_redis',
     'bootstrap4',
     'social_django',
+    'plotter.apps.PlotterConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,16 +145,16 @@ ASGI_APPLICATION = 'example.asgi.application'
 #    }
 #}
 
-DATABASES = {
-    'default': {
-        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
-        'NAME'    : 'RubyDB',                 # <-- UPDATED line 
-        'USER'    : 'pythonuser',                     # <-- UPDATED line
-        'PASSWORD': 'pythonuser',              # <-- UPDATED line
-        'HOST'    : 'localhost',                # <-- UPDATED line
-        'PORT'    : '3306',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE'  : 'django.db.backends.mysql', # <-- UPDATED line 
+#        'NAME'    : 'RubyDB',                 # <-- UPDATED line 
+#        'USER'    : 'pythonuser',                     # <-- UPDATED line
+#        'PASSWORD': 'pythonuser',              # <-- UPDATED line
+#        'HOST'    : 'localhost',                # <-- UPDATED line
+#        'PORT'    : '3306',
+#    }
+#}
 
 
 # Password validation
@@ -185,6 +189,21 @@ USE_L10N = True
 
 USE_TZ = True
 
+SECRETS_DIRS = (
+    os.path.join(BASE_DIR, 'secrets/secrets.json'),
+)
+
+secret_fullpath = BASE_DIR + '/secrets/secrets.json'
+
+#secrets_file = os.path.join(SECRETS_DIRS, 'secrets.json')
+
+with open(secret_fullpath) as s:
+    secrets = json.load(s)
+
+   
+SECRET_KEY = secrets["SECRET_KEY"]
+
+DATABASES = secrets["DATABASES"]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

@@ -25,6 +25,7 @@ from django.views.generic.base import TemplateView # new
 urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('plots/', TemplateView.as_view(template_name='plots.html'), name='plots'),
+    path('plotter/', include('plotter.urls')),
     re_path(r'^admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")), 
     # Login and Logout
