@@ -10,33 +10,47 @@ import pymysql
 import pandas as pd
 from django.db import connection
 
-def dash_plotly_plot():
-    """
-    Output: Figure object
-    """
-    query = str(LimitOwnerships.objects.all().query)
-    df = pd.read_sql_query(query, connection)
-    
-    #Create graph object Figure object with data
-    fig = go.Scatter(x=df['user_id'], y=df['limit_id'], mode='markers',name='markers')
-    
-    #Update layout for graph object Figure
-    fig.update_layout(title_text = 'Dash_Plot2',
-                      xaxis_title = 'X_Axis',
-                      yaxis_title = 'Y_Axis')
-    
-    return fig
+import numpy as np
+
+#def dash_plotly_plot2():
+"""
+Output: Figure object
+"""
+
+query = str(LimitOwnerships.objects.all().query)
+df = pd.read_sql_query(query, connection)
+
+#print(df)
+
+#Create graph object Figure object with data
+fig3 = go.Figure(go.Scatter(x=df['user_id'], y=df['limit_id']))
+   
+#    return fig
 
 
-#Create DjangoDash applicaiton
-app = DjangoDash(name='DashPlot2')
+#Create DjangoDash application
+app = DjangoDash(name='DashPlot2', add_bootstrap_links=True)
+
+N = 1000
+t = np.linspace(0, 10, 100)
+y = np.sin(t)
+
+fig2 = go.Figure(data=go.Scatter(x=t, y=y, mode='markers'))
+
+#fig3 = dash_plotly_plot2()
 
 #Configure app layout
-app.layout = html.Div([
-                html.Div([
-                    html.Div([                 
-                    dcc.Graph(id = 'dash_plot_2', 
-                              animate = True, 
-                              style={"backgroundColor": "#FFF0F5"})])
-                        ])])
+app.layout = html.Div(children=[
+    html.H1(children='Hello Dash'),
+
+    html.Div(children='''
+        Dash: A web application framework for your data.
+    '''),
+
+    dcc.Graph(
+        id='example-graph',
+        figure=fig3,
+        style={'width': '50vw', 'height': '50vh'}
+    )
+],style={'width': '90vh', 'height': '90vh'})
 
